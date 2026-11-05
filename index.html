@@ -125,7 +125,34 @@ function gameSearch(g){const matches=problems.filter(p=>p.cat==='games');$('cate
 function showFavorites(){const ids=getFavorites();const items=problems.filter(p=>ids.includes(p.id));$('favoritesContent').innerHTML=cards(items);showPage('favoritesPage')}
 document.querySelectorAll('.options[data-name]').forEach(group=>group.addEventListener('click',e=>{if(e.target.classList.contains('option')){group.querySelectorAll('.option').forEach(b=>b.classList.remove('selected'));e.target.classList.add('selected')}}));
 function readAnswers(){return readStore('ttf_survey',[])}
-$('surveyForm').addEventListener('submit',e=>{e.preventDefault();const answers={};let valid=true;document.querySelectorAll('.options[data-name]').forEach(g=>{const selected=g.querySelector('.selected');if(!selected)valid=false;else answers[g.dataset.name]=selected.textContent});if(!valid){alert('Пожалуйста, ответьте на первые три вопроса.');return}const fd=new FormData(e.target);answers.missing=String(fd.get('missing')||'').trim();answers.ideas=String(fd.get('ideas')||'').trim();answers.date=new Date().toISOString();const all=readAnswers();all.push(answers);writeStore('ttf_survey',all);$('surveySuccess').style.display='block';document.querySelector('.stats').style.display='block';renderStats();e.target.reset();document.querySelectorAll('.option.selected').forEach(b=>b.classList.remove('selected'))});
+const SUPABASE_URL='https://xpntcguscefgxfcidxly.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_PGZLCfH0-HXmqu_5hWYbuA_jbVu1zwi';
+$('surveyForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const form=e.currentTarget;
+ const submitButton=form.querySelector('button[type=submit]');
+ const originalText=submitButton.textContent;
+ const answers={};let valid=true;
+ document.querySelectorAll('.options[data-name]').forEach(g=>{const selected=g.querySelector('.selected');if(!selected)valid=false;else answers[g.dataset.name]=selected.textContent});
+ if(!valid){alert('Пожалуйста, ответьте на первые три вопроса.');return}
+ const fd=new FormData(form);
+ answers.missing=String(fd.get('missing')||'').trim();
+ answers.ideas=String(fd.get('ideas')||'').trim();
+ submitButton.disabled=true;submitButton.textContent='Отправляем...';
+ try{
+  const response=await fetch(`${SUPABASE_URL}/rest/v1/survey_responses`,{
+   method:'POST',
+   headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${SUPABASE_PUBLISHABLE_KEY}`,'Prefer':'return=minimal'},
+   body:JSON.stringify(answers)
+  });
+  if(!response.ok){const detail=await response.text();throw new Error(`HTTP ${response.status}: ${detail}`)}
+  answers.date=new Date().toISOString();const all=readAnswers();all.push(answers);writeStore('ttf_survey',all);
+  $('surveySuccess').textContent='✓ Спасибо! Ваши ответы отправлены и сохранены.';
+  $('surveySuccess').style.display='block';document.querySelector('.stats').style.display='block';renderStats();
+  form.reset();document.querySelectorAll('.option.selected').forEach(b=>b.classList.remove('selected'));
+ }catch(error){console.error('Survey submission failed:',error);alert('Не удалось отправить ответы в базу данных. Проверь подключение и настройки Supabase, затем попробуй ещё раз. Твои ответы пока не отправлены.');}
+ finally{submitButton.disabled=false;submitButton.textContent=originalText;}
+});
 function renderStats(){const data=readAnswers();const groups=[['use','Стали бы пользоваться?'],['interest','Интересующий раздел'],['frequency','Частота проблем']];$('statsContent').innerHTML=`<p>Ответов на этом устройстве: <b>${data.length}</b></p>`+groups.map(([key,title])=>{const counts={};data.forEach(a=>counts[a[key]]=(counts[a[key]]||0)+1);return `<h3>${title}</h3>`+Object.entries(counts).map(([label,n])=>`<div class="barrow"><span>${escapeHtml(label)}</span><div class="bar"><span style="width:${Math.round(n/data.length*100)}%"></span></div><b>${Math.round(n/data.length*100)}%</b></div>`).join('')}).join('')+`<h3>Предложения пользователей</h3>`+data.filter(a=>a.missing||a.ideas).map(a=>`<p class="notice">${escapeHtml([a.missing,a.ideas].filter(Boolean).join(' — '))}</p>`).join('')}
 renderHome();
 </script>
