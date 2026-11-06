@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f7ff">
+<title>Twenty Two Fix — понятные решения для ПК и игр</title>
+<style>
+:root{--bg:#f5f7fc;--panel:#fff;--panel2:#f0f4ff;--line:#e1e7f2;--text:#17233d;--muted:#64728b;--blue:#356df3;--purple:#8061e8;--cyan:#2aa9c5;--good:#16845d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#f7f9ff 0,#f2f5fb 100%);color:var(--text);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(1160px,92%);margin:auto}.top{position:sticky;top:0;z-index:10;background:#ffffffed;border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:-.5px;font-size:19px}.logo{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--purple));color:white;box-shadow:0 7px 20px #356df32b;font-weight:900}.links{display:flex;gap:24px;color:#586782;font-size:14px}.links a:hover{color:var(--blue)}.btn{border:0;border-radius:12px;padding:12px 18px;background:linear-gradient(110deg,var(--blue),var(--purple));color:white;font-weight:750;box-shadow:0 8px 20px #356df326;transition:.18s}.btn:hover{transform:translateY(-1px);filter:brightness(1.04)}.btn.secondary{background:#fff;color:#315fc8;border:1px solid #d9e3f7;box-shadow:none}.hero{padding:76px 0 52px;text-align:center}.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid #dce5ff;background:#edf2ff;color:#365fc4;border-radius:99px;padding:7px 13px;font-size:13px;font-weight:650}.hero h1{font-size:clamp(38px,6vw,66px);line-height:1.08;letter-spacing:-2.5px;margin:23px auto 18px;max-width:900px}.gradient{background:linear-gradient(100deg,#356df3,#8a63e8,#2aa9c5);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{color:#596984;max-width:760px;margin:0 auto 28px;font-size:18px}.search{max-width:740px;margin:30px auto 0;display:flex;gap:10px;padding:9px;background:#fff;border:1px solid #dce4f2;border-radius:17px;box-shadow:0 14px 42px #29477d12}.search input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--text);padding:8px 12px}.search input::placeholder{color:#8b98ad}.hint{color:#8793a7;font-size:12px;margin-top:12px}.section{padding:40px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}.section h2{font-size:30px;letter-spacing:-.8px;margin:0}.sub{color:var(--muted);margin:6px 0 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;transition:.2s;min-width:0;box-shadow:0 7px 24px #263b6410}.card:hover{transform:translateY(-3px);border-color:#a9bdf4;box-shadow:0 12px 28px #263b6418}.category{min-height:205px;position:relative;overflow:hidden;cursor:pointer}.category:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-65px;top:-70px;background:radial-gradient(circle,#dce6ff 0,transparent 70%);pointer-events:none}.iconbox{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:#edf2ff;color:#356df3;font-size:24px;margin-bottom:16px}.card h3{margin:0 0 7px;font-size:19px}.card p{margin:0;color:var(--muted)}.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.tag{font-size:12px;color:#4f6387;border:1px solid #e1e8f5;background:#f6f8fd;padding:5px 9px;border-radius:99px}.ad{margin:28px 0;border:1px dashed #bdc9df;background:#f8faff;border-radius:14px;padding:18px;text-align:center;color:#8996ad;font-size:14px;letter-spacing:.3px}.list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.problem{cursor:pointer}.problem .arrow{float:right;color:#547ce0}.problem small{color:#71809a;display:block}.problem h3{font-size:16px;margin:8px 0}.pill{font-size:11px;color:#5475c5;font-weight:750;letter-spacing:.4px}.games{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.game{padding:17px;border:1px solid var(--line);border-radius:15px;background:#fff;text-align:center;font-weight:700;cursor:pointer;box-shadow:0 5px 16px #263b640a;transition:.2s}.game:hover{border-color:#a9bdf4;background:#f6f8ff;transform:translateY(-2px)}.feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{padding:20px;border-radius:17px;background:#fff;border:1px solid var(--line);box-shadow:0 5px 18px #263b640a}.feature b{display:block;margin:8px 0}.feature p{color:var(--muted);font-size:14px;margin:0}.page{display:none;padding:38px 0 80px}.page.active{display:block}.back{color:#4268c3;border:0;background:none;padding:0;margin-bottom:22px;font-weight:650}.page-title{font-size:34px;line-height:1.2;margin:5px 0 10px}.article{max-width:850px}.article .intro{color:var(--muted);font-size:17px}.step{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:20px 0;border-bottom:1px solid var(--line)}.num{width:38px;height:38px;border-radius:12px;background:#edf2ff;color:#356df3;display:grid;place-items:center;font-weight:800}.mockshot{margin-top:12px;border:1px solid #dce5f3;border-radius:14px;background:linear-gradient(135deg,#f8faff,#eef3ff);padding:18px;min-height:90px;color:#34496f}.mockbar{display:flex;gap:7px;margin-bottom:13px}.dot{width:8px;height:8px;border-radius:50%;background:#a9b9d7}.highlight{display:inline-block;border:2px solid #6489ed;border-radius:7px;padding:5px 10px;background:#e7eeff;color:#244eaa;font-weight:650}.note{border-left:3px solid #e0a53a;background:#fff8e9;padding:13px 16px;border-radius:0 10px 10px 0;color:#75551c;margin:18px 0}.survey{max-width:820px;margin:auto}.question{padding:20px 0;border-bottom:1px solid var(--line)}.question h3{font-size:17px;margin:0 0 13px}.options{display:flex;flex-wrap:wrap;gap:10px}.option{border:1px solid #dce4f2;background:#fff;color:#40516e;border-radius:12px;padding:10px 14px;cursor:pointer}.option:hover{border-color:#9db4ee}.option.selected{border-color:#6689e8;background:#edf2ff;color:#244eaa}.field{width:100%;background:#fff;border:1px solid #dce4f2;color:var(--text);border-radius:12px;padding:13px;outline:none}.field:focus{border-color:#7898eb;box-shadow:0 0 0 3px #7898eb20}.survey textarea{min-height:90px;resize:vertical}.survey-actions{display:flex;align-items:center;gap:15px;margin-top:22px;flex-wrap:wrap}.notice{font-size:12px;color:#8290a7}.success{display:none;padding:16px;border:1px solid #b8e2d2;background:#edfaf4;color:#176c4c;border-radius:12px;margin-top:18px}.stats{display:none;margin-top:28px}.barrow{display:grid;grid-template-columns:150px 1fr 40px;gap:10px;align-items:center;margin:12px 0;color:#52627d;font-size:13px}.bar{height:10px;border-radius:99px;background:#e8edf6;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--purple))}.about{max-width:850px;color:#53627c;font-size:17px}.about p{margin:0 0 17px}.footer{border-top:1px solid var(--line);padding:30px 0;color:#8290a7;font-size:13px;background:#fff}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.empty{color:#7b89a1;padding:20px;text-align:center;background:#fff;border:1px dashed var(--line);border-radius:14px}.hidden{display:none!important}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.mini-btn{border:1px solid var(--line);background:#fff;color:#50617e;border-radius:10px;padding:8px 12px}.mini-btn.active{background:#edf2ff;border-color:#9db4ee;color:#315fc8}.result-count{color:#7b89a1;font-size:13px;margin:12px 0}
+@media(max-width:760px){.links{display:none}.hero{padding:55px 0 35px}.hero h1{letter-spacing:-1.4px}.grid,.feature-row{grid-template-columns:1fr}.list{grid-template-columns:repeat(2,minmax(0,1fr))}.games{grid-template-columns:repeat(2,minmax(0,1fr))}.section-head{align-items:start;flex-direction:column}.search{flex-direction:column}.search button{width:100%}.page-title{font-size:28px}.barrow{grid-template-columns:110px 1fr 32px}}
+@media(max-width:420px){.list{grid-template-columns:1fr}.nav{min-height:64px}.brand{font-size:15px}.hero{padding-top:42px}.brand .logo{width:34px;height:34px}}
+
+/* Twenty Two Fix 2.0 — subtle motion layer */
+:root{scroll-behavior:smooth}
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(2px)}
+.hero:before{width:260px;height:260px;right:-85px;top:-105px;background:radial-gradient(circle,#a9c4ff70 0,transparent 70%);animation:ttfFloat 9s ease-in-out infinite}
+.hero:after{width:210px;height:210px;left:-95px;bottom:-115px;background:radial-gradient(circle,#c6b5ff55 0,transparent 70%);animation:ttfFloat 11s ease-in-out infinite reverse}
+.logo{animation:ttfLogo 5s ease-in-out infinite;transition:transform .25s,box-shadow .25s}
+.brand:hover .logo{transform:rotate(-8deg) scale(1.07);box-shadow:0 10px 26px #356df34a}
+.btn{position:relative;overflow:hidden;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease}
+.btn:after{content:"";position:absolute;top:-80%;left:-55%;width:35%;height:260%;background:#ffffff45;transform:rotate(25deg) translateX(-180%);transition:transform .55s ease;pointer-events:none}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 25px #356df33b}
+.btn:hover:after{transform:rotate(25deg) translateX(520%)}
+.btn:active,.option:active,.mini-btn:active{transform:scale(.97)}
+.card,.feature,.game,.option,.mini-btn,.iconbox{transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease,background .24s ease}
+.card:hover,.feature:hover{transform:translateY(-5px);box-shadow:0 16px 34px #263b641c}
+.category:hover .iconbox,.feature:hover .iconbox{transform:scale(1.08) rotate(-4deg)}
+.game:hover{transform:translateY(-4px) scale(1.015);box-shadow:0 12px 24px #263b6418}
+.option:hover,.mini-btn:hover{transform:translateY(-2px)}
+.search{transition:box-shadow .25s,border-color .25s,transform .25s}
+.search:focus-within{border-color:#9bb4f5;box-shadow:0 16px 42px #356df320;transform:translateY(-2px)}
+.search .btn{flex-shrink:0}
+.eyebrow{animation:ttfFadeUp .65s both}
+.hero h1{animation:ttfFadeUp .75s .08s both}
+.hero .lead{animation:ttfFadeUp .75s .16s both}
+.hero .search{animation:ttfFadeUp .75s .24s both}
+.hero .hint{animation:ttfFadeUp .75s .30s both}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.reveal-left{transform:translateX(-22px)}
+.reveal-left.is-visible{transform:translateX(0)}
+.reveal-scale{transform:translateY(15px) scale(.97)}
+.reveal-scale.is-visible{transform:translateY(0) scale(1)}
+.step{transition:background .25s,border-color .25s; border-radius:14px}
+.step:hover{background:#ffffffb8}
+.num{transition:transform .25s,box-shadow .25s}
+.step:hover .num{transform:scale(1.08);box-shadow:0 5px 14px #356df326}
+.mockshot{transition:transform .25s,border-color .25s,box-shadow .25s}
+.step:hover .mockshot{border-color:#b8c9f4;box-shadow:0 7px 18px #263b640c}
+.page.active{animation:ttfPageIn .42s ease both}
+.ad{transition:border-color .25s,background .25s}
+.ad:hover{border-color:#aebfe3;background:#f3f7ff}
+@keyframes ttfFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-14px,17px,0)}}
+@keyframes ttfLogo{0%,88%,100%{box-shadow:0 7px 20px #356df32b}94%{box-shadow:0 0 0 7px #356df315,0 7px 22px #356df34a}}
+@keyframes ttfFadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ttfPageIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+ .reveal{opacity:1!important;transform:none!important}
+}
+
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap nav">
+<a class="brand" href="#" onclick="showHome();return false"><span class="logo">22</span><span>TWENTY TWO <span class="gradient">FIX</span></span></a>
+<nav class="links"><a href="#catalog" onclick="showHome()">Каталог</a><a href="#games" onclick="showHome()">Игры</a><a href="#" onclick="showFavorites();return false">Избранное</a><a href="#" onclick="showSurvey();return false">Опрос</a><a href="#" onclick="showAbout();return false">О проекте</a></nav>
+<button class="btn secondary" onclick="showSurvey()">Пройти опрос</button>
+</div></header>
+<main id="home">
+<section class="hero wrap">
+<div class="eyebrow">✦ Бесплатные решения • Компьютеры и игры</div>
+<h1>Твоя проблема — <span class="gradient">наше решение!</span></h1>
+<p class="lead">Помогаю решать проблемы с компьютерами и играми. Простые инструкции, наглядные изображения и понятные решения даже для новичков.</p>
+<div class="search"><input id="searchInput" placeholder="Опиши свою проблему..." onkeydown="if(event.key==='Enter')searchProblems()"><button class="btn" onclick="searchProblems()">Найти решение&nbsp; →</button></div>
+<div class="hint">Например: «Не работает Wi-Fi», «Компьютер тормозит», «Не запускается CS2»</div>
+<p class="sub" style="max-width:720px;margin:22px auto 0">Twenty Two Fix — бесплатный помощник для повседневных технических проблем. Здесь собраны понятные инструкции для Windows, программ и популярных игр. Не нужно разбираться в сложных терминах: выбери проблему и двигайся по шагам.</p>
+</section>
+<div class="wrap"><div class="ad">Здесь могла быть ваша реклама</div></div>
+<section class="section wrap" id="catalog">
+<div class="section-head"><div><h2>С чем я помогу?</h2><p class="sub">Выбери категорию своей проблемы</p></div></div>
+<div class="grid">
+<div class="card category" onclick="showCategory('pc')"><div class="iconbox">💻</div><h3>Проблемы с компьютером</h3><p>Windows, программы, интернет, производительность и устройства.</p><div class="tagrow"><span class="tag">Windows</span><span class="tag">Wi-Fi</span><span class="tag">Вирусы</span></div></div>
+<div class="card category" onclick="showCategory('games')"><div class="iconbox">🎮</div><h3>Проблемы с играми</h3><p>Запуск игр, ошибки, вылеты, FPS, подключение и настройки.</p><div class="tagrow"><span class="tag">Steam</span><span class="tag">CS2</span><span class="tag">Minecraft</span></div></div>
+</div></section>
+<section class="section wrap"><div class="section-head"><div><h2>Популярные решения</h2><p class="sub">Демонстрационный каталог: компьютеры, Windows, программы и популярные игры</p></div><button class="btn secondary" onclick="showCategory('pc')">Весь каталог →</button></div><div class="list" id="popular"></div></section>
+<section class="section wrap"><div class="section-head"><div><h2>Как пользоваться сайтом?</h2><p class="sub">Всего три простых шага — от проблемы до понятного решения</p></div></div><div class="feature-row">
+<div class="feature"><div class="iconbox">1</div><b>Найди свою проблему</b><p>Введи её в поиск или выбери раздел «Компьютеры» либо «Игры».</p></div>
+<div class="feature"><div class="iconbox">2</div><b>Открой инструкцию</b><p>Прочитай описание и проверь, подходит ли решение к твоей ситуации.</p></div>
+<div class="feature"><div class="iconbox">3</div><b>Выполняй по шагам</b><p>Следуй действиям по порядку. Визуальные подсказки показывают, какой пункт меню искать.</p></div>
+</div></section>
+<section class="section wrap" id="games"><div class="section-head"><div><h2>Популярные игры</h2><p class="sub">Выбери игру, чтобы посмотреть типичные проблемы</p></div></div><div class="games" id="gameList"></div></section>
+<section class="section wrap"><div class="section-head"><div><h2>Почему Twenty Two Fix?</h2></div></div><div class="feature-row">
+<div class="feature"><div class="iconbox">🧭</div><b>Понятно и пошагово</b><p>Каждая инструкция разделена на простые действия.</p></div>
+<div class="feature"><div class="iconbox">🖼️</div><b>Наглядные подсказки</b><p>Показываю, куда нажимать, с помощью визуальных примеров.</p></div>
+<div class="feature"><div class="iconbox">🆓</div><b>Бесплатно</b><p>Все решения доступны без подписок и платежей.</p></div>
+</div></section>
+<div class="wrap"><div class="ad">Здесь могла быть ваша реклама</div></div>
+<section class="section wrap"><div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap"><div><h2 style="font-size:24px">Помогите сделать Twenty Two Fix лучше!</h2><p class="sub">Ответьте на несколько вопросов и поделитесь идеями.</p></div><button class="btn" onclick="showSurvey()">Пройти опрос →</button></div></section>
+</main>
+<section class="page wrap" id="categoryPage"><button class="back" onclick="showHome()">← На главную</button><div id="categoryContent"></div><div class="ad">Здесь могла быть ваша реклама</div></section>
+<section class="page wrap" id="articlePage"><button class="back" onclick="goBack()">← Назад</button><div class="article" id="articleContent"></div><div class="ad">Здесь могла быть ваша реклама</div></section>
+<section class="page wrap" id="surveyPage"><button class="back" onclick="showHome()">← На главную</button><div class="survey">
+<div class="eyebrow">Мнение пользователей важно</div><h1 class="page-title">Помогите сделать <span class="gradient">Twenty Two Fix</span> лучше!</h1><p class="sub">Я разрабатываю Twenty Two Fix и хочу узнать ваше мнение. Ответьте на несколько коротких вопросов — это поможет мне сделать сайт полезнее и удобнее.</p>
+<form id="surveyForm">
+<div class="question"><h3>1. Стали бы вы пользоваться сайтом Twenty Two Fix?</h3><div class="options" data-name="use"><button type="button" class="option">Да, определённо</button><button type="button" class="option">Скорее да</button><button type="button" class="option">Пока не уверен(а)</button><button type="button" class="option">Нет</button></div></div>
+<div class="question"><h3>2. Какой раздел сайта вам наиболее интересен?</h3><div class="options" data-name="interest"><button type="button" class="option">Компьютеры и Windows</button><button type="button" class="option">Компьютерные игры</button><button type="button" class="option">Оба раздела</button></div></div>
+<div class="question"><h3>3. Сталкивались ли вы с подобными проблемами?</h3><div class="options" data-name="frequency"><button type="button" class="option">Часто</button><button type="button" class="option">Иногда</button><button type="button" class="option">Редко</button><button type="button" class="option">Никогда</button></div></div>
+<div class="question"><h3>4. Чего вам не хватает в существующих сайтах с инструкциями?</h3><textarea class="field" name="missing" placeholder="Ваш ответ (необязательно)"></textarea></div>
+<div class="question"><h3>5. Какие функции или возможности вы хотели бы добавить в Twenty Two Fix?</h3><textarea class="field" name="ideas" placeholder="Ваши предложения (необязательно)"></textarea></div>
+<div class="survey-actions"><button class="btn" type="submit">Отправить ответы</button><span class="notice">Опрос анонимный. Не указывайте личные данные.</span></div>
+<div class="success" id="surveySuccess">✓ Спасибо! Твоё мнение поможет сделать Twenty Two Fix лучше!</div>
+</form>
+<div class="stats"><h2>Результаты опроса</h2><p class="notice">Демонстрационная статистика ответов, сохранённых в этом браузере.</p><div id="statsContent"></div></div>
+<div class="note">Демонстрационный режим: ответы сохраняются в браузере этого устройства. Для сбора общей статистики с разных устройств потребуется подключить серверную базу данных.</div>
+</div></section>
+<section class="page wrap" id="favoritesPage"><button class="back" onclick="showHome()">← На главную</button><h1 class="page-title">Избранные инструкции</h1><p class="sub">Сохраняй полезные решения, чтобы быстро вернуться к ним позже.</p><div id="favoritesContent" class="list" style="margin-top:24px"></div></section>
+<section class="page wrap" id="aboutPage"><button class="back" onclick="showHome()">← На главную</button><div class="about"><div class="eyebrow">О проекте</div><h1 class="page-title">Что такое <span class="gradient">Twenty Two Fix</span>?</h1>
+<p>Twenty Two Fix — мой предпринимательский проект, идея которого заключается в создании бесплатного сервиса для самостоятельного решения компьютерных и игровых проблем.</p>
+<p>Я заметил, что многие пользователи сталкиваются с различными техническими неполадками, но не всегда понимают, как их исправить.</p>
+<p>Существующие инструкции часто бывают слишком сложными, длинными или содержат только текстовое описание действий.</p>
+<p>Поэтому я решил создать сайт, который будет не просто рассказывать, что нужно делать, но и показывать, куда именно нажимать.</p>
+<p>Главная особенность Twenty Two Fix — наглядные пошаговые инструкции с изображениями, скриншотами и указателями.</p>
+<p>Проект охватывает две основные категории: проблемы с компьютерами и ноутбуками, а также проблемы с компьютерными играми.</p>
+<p>Моя цель — сделать решение технических проблем доступным, понятным и бесплатным для каждого.</p>
+<div class="ad">Здесь могла быть ваша реклама</div></div></section>
+<footer class="footer"><div class="wrap footer-inner"><span>© 2026 Twenty Two Fix</span><span>Бесплатная помощь с компьютерами и играми</span><span>Покажем не только что делать, но и куда нажимать!</span></div></footer>
+<script>
+const problems=[
+{id:'slow',title:'Компьютер тормозит',cat:'pc',desc:'Проверяем автозагрузку, свободное место и нагрузку на систему.',keys:'тормозит медленный компьютер зависает',steps:[['Откройте Диспетчер задач','Нажмите Ctrl + Shift + Esc.','Клавиши: <span class="highlight">Ctrl</span> + <span class="highlight">Shift</span> + <span class="highlight">Esc</span>'],['Проверьте нагрузку','Откройте вкладку «Процессы» и посмотрите, какие приложения сильнее всего нагружают процессор и память.','<span class="highlight">Процессы</span> → проверьте столбцы «ЦП» и «Память»'],['Проверьте автозагрузку','Перейдите в раздел «Автозагрузка приложений». Отключайте только те программы, назначение которых вам известно.','<span class="highlight">Автозагрузка приложений</span>'],['Перезагрузите компьютер','Сохраните открытые документы и перезагрузите устройство.','Пуск → Питание → Перезагрузка']],warning:'Не завершайте неизвестные системные процессы и не удаляйте файлы Windows.'},
+{id:'wifi',title:'Не работает Wi-Fi',cat:'pc',desc:'Проверяем подключение, режим полёта и перезапускаем сетевое соединение.',keys:'wifi вай фай интернет сеть не подключается',steps:[['Проверьте режим полёта','Откройте быстрые настройки Windows и убедитесь, что режим полёта выключен.','<span class="highlight">Режим в самолёте: выкл.</span>'],['Проверьте Wi-Fi','Убедитесь, что Wi-Fi включён, и выберите свою сеть.','<span class="highlight">Wi-Fi</span> → выберите сеть → Подключиться'],['Перезапустите роутер','Если проблема есть на всех устройствах, попросите взрослого или владельца сети перезапустить роутер.','Отключите питание роутера на 20–30 секунд, затем включите снова.'],['Запустите диагностику','Откройте Параметры → Система → Устранение неполадок → Другие средства устранения неполадок.','<span class="highlight">Сетевой адаптер</span> → Запустить']],warning:'Не сообщайте другим людям пароль от своей сети. Не сбрасывайте настройки роутера без необходимости.'},
+{id:'virus',title:'Как проверить компьютер на вирусы',cat:'pc',desc:'Запускаем проверку встроенной защитой Windows.',keys:'вирусы вирус защитник windows безопасность',steps:[['Откройте Безопасность Windows','Найдите приложение через поиск в меню «Пуск».','Пуск → <span class="highlight">Безопасность Windows</span>'],['Перейдите к защите от вирусов','Выберите раздел «Защита от вирусов и угроз».','<span class="highlight">Защита от вирусов и угроз</span>'],['Запустите быструю проверку','Нажмите «Быстрая проверка» и дождитесь завершения.','<span class="highlight">Быстрая проверка</span>'],['Изучите результат','Следуйте рекомендациям Защитника Windows, если он обнаружит угрозы.','Просмотрите результаты проверки']],warning:'Не скачивайте неизвестные «антивирусы» из всплывающих окон и не отключайте защиту Windows.'},
+{id:'cs2',title:'Не запускается Counter-Strike 2',cat:'games',desc:'Проверяем файлы игры и обновления Steam.',keys:'cs2 counter strike 2 кс кс2 не запускается steam',steps:[['Перезапустите Steam','Полностью закройте Steam через меню приложения и откройте его снова.','Steam → Выход → запустите Steam'],['Откройте библиотеку','Найдите Counter-Strike 2 в списке игр.','<span class="highlight">Библиотека</span> → Counter-Strike 2'],['Откройте свойства игры','Нажмите правой кнопкой мыши по игре и выберите «Свойства».','<span class="highlight">Свойства</span>'],['Проверьте файлы','Откройте «Установленные файлы» и нажмите «Проверить целостность файлов игры».','<span class="highlight">Проверить целостность файлов игры</span>'],['Дождитесь проверки','Steam проверит файлы и при необходимости загрузит недостающие.','Дождитесь завершения проверки']],warning:'Не удаляйте папку игры вручную. Проверка файлов обычно безопаснее переустановки.'},
+{id:'minecraft',title:'Вылетает Minecraft',cat:'games',desc:'Проверяем версию игры, моды и сообщения об ошибках.',keys:'minecraft майнкрафт вылетает зависает ошибка',steps:[['Запустите игру без модов','Если используете моды, временно проверьте запуск чистого профиля без них.','В Launcher выберите обычную версию игры'],['Проверьте версию','Убедитесь, что версия игры совместима с установленными модами и загрузчиком.','Сверьте версии Minecraft и модов'],['Обновите игру и Launcher','Установите доступные обновления из официального Launcher.','Официальный Minecraft Launcher → обновление'],['Посмотрите сообщение об ошибке','Запишите текст ошибки — он поможет точнее определить причину.','Сохраните код или текст ошибки']],warning:'Перед изменением файлов мира сделайте резервную копию сохранений.'},
+{id:'fps',title:'Низкий FPS в игре',cat:'games',desc:'Проверяем настройки графики и фоновые приложения.',keys:'низкий fps фпс лагает тормозит игра',steps:[['Закройте лишние приложения','Закройте программы, которыми сейчас не пользуетесь, предварительно сохранив работу.','Проверьте открытые приложения'],['Проверьте настройки графики','Попробуйте снизить качество теней и эффектов в настройках игры.','Настройки → Видео / Графика'],['Выберите подходящий режим экрана','Проверьте разрешение и режим отображения, рекомендованные для вашего монитора.','Полноэкранный режим или без рамки'],['Перезапустите игру','Примените настройки и проверьте производительность снова.','Нажмите «Применить» и перезапустите игру']],warning:'Не устанавливайте неизвестные программы для «разгона FPS» и не скачивайте модифицированные драйверы.'},
+{id:'sites',title:'Не открываются сайты',cat:'pc',desc:'Проверяем подключение и настройки браузера.',keys:'сайты браузер не открывается интернет',steps:[['Проверьте другие сайты','Откройте несколько известных сайтов, чтобы понять, проблема общая или только с одним ресурсом.','Попробуйте открыть другой сайт'],['Проверьте подключение','Убедитесь, что другие приложения имеют доступ к интернету.','Проверьте значок сети'],['Перезапустите браузер','Закройте браузер и откройте его снова. При необходимости проверьте страницу в другом браузере.','Закрыть → открыть снова'],['Проверьте дату и время','Убедитесь, что дата и время устройства установлены правильно.','Параметры → Время и язык']],warning:'Не вводите пароли на сайтах, в подлинности которых вы не уверены.'},
+{id:'steam',title:'Ошибка загрузки или обновления Steam',cat:'games',desc:'Проверяем состояние загрузки и перезапускаем клиент.',keys:'steam ошибка загрузки обновление не скачивает',steps:[['Проверьте соединение','Убедитесь, что интернет работает стабильно.','Откройте любой знакомый сайт'],['Приостановите и возобновите загрузку','В разделе «Загрузки» нажмите паузу, а затем продолжите.','Steam → Загрузки → Пауза → Возобновить'],['Перезапустите Steam','Выйдите из Steam через меню и запустите приложение снова.','Steam → Выход'],['Проверьте место на диске','Убедитесь, что на диске достаточно свободного места для обновления.','Проводник → Этот компьютер']],warning:'Не удаляйте содержимое папок Steam вручную.'},
+{id:'sound',title:'На компьютере пропал звук',cat:'pc',desc:'Проверяем громкость, устройство вывода и настройки приложения.',keys:'звук нет звука динамики наушники аудио',steps:[['Проверьте громкость','Нажмите значок динамика возле часов и убедитесь, что звук не выключен.','Панель задач → значок 🔊'],['Выберите устройство вывода','Откройте список устройств и выберите нужные динамики или наушники.','Настройки звука → Устройство вывода'],['Проверьте подключение','Убедитесь, что кабель или Bluetooth-подключение работают.','Проверьте разъём и состояние подключения'],['Запустите проверку звука','В параметрах звука используйте тест выбранного устройства.','Параметры → Система → Звук']],warning:'Не выкручивайте громкость на максимум, если не уверены в выбранном устройстве.'},
+{id:'disk',title:'Заканчивается место на диске',cat:'pc',desc:'Находим большие файлы и используем безопасную очистку Windows.',keys:'мало места диск память заполнен очистка',steps:[['Откройте параметры хранилища','Перейдите в Параметры → Система → Память.','Пуск → Параметры → Система → Память'],['Посмотрите, что занимает место','Откройте категории файлов и проверьте объём временных файлов.','Проверьте категории «Приложения», «Временные файлы»'],['Используйте очистку','Удаляйте только те временные файлы, назначение которых понятно.','Временные файлы → выберите безопасные категории'],['Проверьте корзину','Перед очисткой убедитесь, что в корзине нет нужных файлов.','Корзина → просмотрите содержимое']],warning:'Не удаляйте неизвестные папки Windows и Program Files вручную.'},
+{id:'bluetooth',title:'Не подключаются Bluetooth-наушники',cat:'pc',desc:'Проверяем Bluetooth, режим сопряжения и список устройств.',keys:'bluetooth блютуз наушники не подключаются',steps:[['Включите Bluetooth','Откройте быстрые настройки и проверьте, что Bluetooth включён.','Быстрые настройки → Bluetooth'],['Включите режим сопряжения','Переведите наушники в режим подключения по инструкции производителя.','Индикатор наушников должен показывать режим сопряжения'],['Добавьте устройство','В Windows откройте Bluetooth и устройства → Добавить устройство.','Добавить устройство → Bluetooth'],['Повторите подключение','Если наушники уже есть в списке, но не подключаются, попробуйте отключить их и добавить заново.','Устройство → Удалить устройство → Добавить']],warning:'Не сбрасывайте наушники к заводским настройкам, пока не проверили обычное подключение.'},
+{id:'update',title:'Windows не устанавливает обновление',cat:'pc',desc:'Проверяем интернет, свободное место и средство устранения неполадок.',keys:'windows обновление не устанавливается ошибка update',steps:[['Проверьте интернет','Убедитесь, что соединение стабильно и не прерывается.','Откройте любой сайт'],['Проверьте свободное место','Посмотрите, достаточно ли места на системном диске.','Параметры → Система → Память'],['Перезагрузите компьютер','Сохраните файлы и выполните обычную перезагрузку.','Пуск → Питание → Перезагрузка'],['Запустите устранение неполадок','Откройте Параметры → Система → Устранение неполадок.','Другие средства устранения неполадок → Центр обновления Windows']],warning:'Не выключайте компьютер во время установки обновления.'},
+{id:'roblox',title:'Roblox не запускается',cat:'games',desc:'Проверяем обновление приложения, подключение и перезапуск.',keys:'roblox роблокс не запускается ошибка вылетает',steps:[['Проверьте интернет','Откройте другой сайт или приложение, чтобы проверить соединение.','Проверьте подключение к сети'],['Перезапустите Roblox','Закройте игру и запустите её заново.','Закройте окно игры → откройте Roblox снова'],['Проверьте обновления','Убедитесь, что используете актуальную версию Roblox из официального источника.','Откройте официальный клиент или магазин приложений'],['Перезагрузите устройство','Если проблема осталась, сохраните работу и перезапустите компьютер.','Пуск → Питание → Перезагрузка']],warning:'Не скачивайте сторонние лаунчеры и файлы, обещающие бесплатные Robux.'},
+{id:'fortnite',title:'Fortnite зависает или вылетает',cat:'games',desc:'Проверяем обновления, файлы игры и графические настройки.',keys:'fortnite фортнайт вылетает зависает epic games',steps:[['Проверьте обновления','Откройте Epic Games Launcher и проверьте наличие обновлений.','Библиотека → Fortnite → Обновить'],['Проверьте файлы игры','В меню игры откройте управление и выберите проверку файлов, если она доступна.','Три точки → Управление → Проверить'],['Упростите графику','Временно уменьшите качество эффектов и теней.','Настройки игры → Видео'],['Перезапустите игру','Примените изменения и проверьте, повторяется ли проблема.','Закройте Fortnite и запустите снова']],warning:'Не используйте неизвестные программы для изменения игровых файлов.'},
+{id:'dota',title:'Не подключается матч в Dota 2',cat:'games',desc:'Проверяем интернет, обновление клиента и состояние поиска матча.',keys:'dota 2 дота не подключается матч сеть',steps:[['Проверьте подключение','Убедитесь, что интернет работает без перебоев.','Откройте другой сетевой сервис'],['Проверьте обновление','Откройте Steam и дождитесь установки обновлений Dota 2.','Steam → Загрузки'],['Перезапустите игру','Полностью закройте Dota 2 и откройте её снова.','Библиотека → Dota 2 → Играть'],['Проверьте повторное подключение','Если матч уже найден, следуйте сообщениям клиента и не запускайте несколько копий игры.','Дождитесь завершения подключения']],warning:'Не пытайтесь обходить ограничения игрового клиента или использовать сторонние программы.'},
+{id:'valorant',title:'Ошибка запуска VALORANT',cat:'games',desc:'Проверяем обновления клиента и обычную перезагрузку системы.',keys:'valorant валорант ошибка запуска riot client',steps:[['Перезапустите Riot Client','Закройте клиент и откройте его снова.','Riot Client → Выход'],['Проверьте обновления','Дождитесь загрузки доступных обновлений игры и клиента.','Окно Riot Client → Обновить'],['Перезагрузите компьютер','Сохраните открытые документы и перезапустите Windows.','Пуск → Питание → Перезагрузка'],['Запишите код ошибки','Если сообщение повторяется, сохраните точный код ошибки для поиска решения.','Сфотографируйте или перепишите текст сообщения']],warning:'Не отключайте системные средства защиты и не загружайте файлы исправления с неизвестных сайтов.'},
+{id:'gta',title:'GTA V долго загружается',cat:'games',desc:'Проверяем обновления, свободное место и целостность файлов.',keys:'gta v gta 5 гта долго загружается лагает',steps:[['Проверьте свободное место','Убедитесь, что на диске с игрой достаточно свободного пространства.','Проводник → Этот компьютер'],['Проверьте обновления','Откройте игровой лаунчер и установите доступные обновления.','Rockstar Games Launcher / Steam → Обновить'],['Проверьте файлы игры','Если игра установлена через Steam, используйте проверку целостности файлов.','Свойства → Установленные файлы → Проверить'],['Перезапустите компьютер','Сохраните работу и перезагрузите систему.','Пуск → Питание → Перезагрузка']],warning:'Не удаляйте игровые сохранения и папки профиля без резервной копии.'},
+{id:'crash',title:'Игра постоянно вылетает',cat:'games',desc:'Собираем простые признаки проблемы и проверяем настройки.',keys:'игра вылетает закрывается crash ошибка',steps:[['Запомните момент вылета','Проверьте, происходит ли ошибка при запуске, загрузке уровня или через некоторое время.','Запишите, когда именно закрывается игра'],['Проверьте обновления','Установите доступные обновления игры и официального лаунчера.','Откройте библиотеку → Обновить'],['Временно снизьте графику','Проверьте, меняется ли ситуация при более простых настройках.','Настройки → Видео → Средние'],['Проверьте файлы','Используйте встроенную проверку целостности в лаунчере, если она доступна.','Меню игры → Проверить файлы']],warning:'Не скачивайте неофициальные DLL-файлы и исправления с неизвестных сайтов.'},
+{id:'mic',title:'Не работает микрофон в игре',cat:'games',desc:'Проверяем выбранное устройство и разрешения микрофона.',keys:'микрофон голосовой чат discord игра не слышно',steps:[['Проверьте микрофон в Windows','Откройте Параметры → Система → Звук и выберите устройство ввода.','Параметры → Система → Звук → Ввод'],['Проверьте разрешения','Убедитесь, что приложениям разрешён доступ к микрофону.','Конфиденциальность и безопасность → Микрофон'],['Проверьте настройки игры','Выберите правильное устройство ввода и проверьте клавишу голосового чата.','Настройки → Звук / Голосовой чат'],['Сделайте тест','Проверьте уровень сигнала и попробуйте записать короткий тест.','Проверка микрофона в настройках']],warning:'Проверяйте, кому доступен голосовой чат.'}
+
+];
+let currentPage='home',previousPage='home', currentCategory='all';
+const $=id=>document.getElementById(id);
+function hidePages(){$('home').style.display='none';['categoryPage','articlePage','surveyPage','aboutPage','favoritesPage'].forEach(id=>$(id).classList.remove('active'))}
+function showHome(){hidePages();$('home').style.display='block';currentPage='home';window.scrollTo(0,0)}
+function showPage(id){hidePages();$(id).classList.add('active');previousPage=currentPage;currentPage=id;window.scrollTo(0,0)}
+function showSurvey(){showPage('surveyPage')}
+function showAbout(){showPage('aboutPage')}
+function goBack(){if(previousPage==='categoryPage'){$('categoryPage').classList.add('active');$('articlePage').classList.remove('active');currentPage='categoryPage'}else showHome();window.scrollTo(0,0)}
+function readStore(key,fallback=[]){try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(fallback))}catch{return fallback}}
+function writeStore(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(e){alert('Браузер не разрешил сохранить данные. Проверьте настройки приватности.');}}
+function getFavorites(){return readStore('ttf_favorites',[])}
+function isFavorite(id){return getFavorites().includes(id)}
+function toggleFavorite(id){let a=getFavorites();a=a.includes(id)?a.filter(x=>x!==id):[...a,id];writeStore('ttf_favorites',a);return a.includes(id)}
+function cards(items){if(!items.length)return '<div class="empty">Пока ничего не найдено. Попробуйте изменить запрос.</div>';return items.map(p=>`<div class="card problem" role="button" tabindex="0" onclick="openArticle('${p.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openArticle('${p.id}')}"><span class="arrow">↗</span><span class="pill">${p.cat==='pc'?'КОМПЬЮТЕРЫ':'ИГРЫ'}</span><h3>${p.title}</h3><small>${p.desc}</small><div class="tagrow"><span class="tag">Пошагово</span><span class="tag">Бесплатно</span></div></div>`).join('')}
+function renderHome(){$('popular').innerHTML=cards(problems.slice(0,6));$('gameList').innerHTML=['Counter-Strike 2','Minecraft','GTA V','Roblox','Fortnite','Dota 2','Valorant'].map(g=>`<button class="game" onclick="gameSearch('${g}')">🎮<br>${g}</button>`).join('')}
+function showCategory(cat){currentCategory=cat;const items=problems.filter(p=>cat==='all'||p.cat===cat);$('categoryContent').innerHTML=`<div class="eyebrow">${cat==='pc'?'💻 Компьютеры и ноутбуки':cat==='games'?'🎮 Компьютерные игры':'Все инструкции'}</div><h1 class="page-title">${cat==='pc'?'Решение проблем с компьютером':cat==='games'?'Решение проблем с играми':'Каталог инструкций'}</h1><p class="sub">Выберите проблему, чтобы открыть подробную пошаговую инструкцию.</p><div class="toolbar"><button class="mini-btn ${cat==='all'?'active':''}" onclick="showCategory('all')">Все</button><button class="mini-btn ${cat==='pc'?'active':''}" onclick="showCategory('pc')">Компьютеры</button><button class="mini-btn ${cat==='games'?'active':''}" onclick="showCategory('games')">Игры</button></div><p class="result-count">Найдено инструкций: ${items.length}</p><div class="list">${cards(items)}</div>`;showPage('categoryPage')}
+function openArticle(id){const p=problems.find(x=>x.id===id);if(!p)return;$('articleContent').innerHTML=`<span class="pill">${p.cat==='pc'?'КОМПЬЮТЕРЫ':'ИГРЫ'}</span><h1 class="page-title">${p.title}</h1><p class="intro">${p.desc}</p><div class="toolbar"><button class="mini-btn ${isFavorite(id)?'active':''}" onclick="favoriteFromArticle('${id}',this)">${isFavorite(id)?'★ В избранном':'☆ В избранное'}</button><button class="mini-btn" onclick="window.print()">Распечатать инструкцию</button></div><div class="note">Перед началом сохраните важные документы и закройте лишние приложения. Выполняйте действия по порядку. Если пункт меню у вас называется иначе, ориентируйтесь на смысл шага.</div><h2 style="margin-top:30px">Пошаговое решение</h2>${p.steps.map((st,i)=>`<div class="step"><div class="num">${i+1}</div><div><h3 style="margin:0 0 5px">${st[0]}</h3><p style="color:var(--muted);margin:0">${st[1]}</p><div class="mockshot"><div class="mockbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><div><b>Где нажать:</b> ${st[2]}</div></div></div></div>`).join('')}<div class="note">⚠️ Важно: ${p.warning}</div><h3>Помогла ли инструкция?</h3><div class="options"><button class="option" onclick="rate('${id}','yes',this)">👍 Да, помогла</button><button class="option" onclick="rate('${id}','no',this)">👎 Нет, не помогла</button></div><p class="notice" id="rateMessage">${getRatingMessage(id)}</p>`;showPage('articlePage')}
+function favoriteFromArticle(id,btn){const added=toggleFavorite(id);btn.classList.toggle('active',added);btn.textContent=added?'★ В избранном':'☆ В избранное'}
+function getRatingMessage(id){const r=readStore('ttf_ratings',{});const x=r[id];return x?`Спасибо! Ваша последняя оценка: ${x==='yes'?'инструкция помогла':'инструкция не помогла'}.`:'Оценка поможет понять, какие инструкции стоит улучшить.'}
+function rate(id,value,btn){const r=readStore('ttf_ratings',{});r[id]=value;writeStore('ttf_ratings',r);btn.parentElement.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');$('rateMessage').textContent='Спасибо за оценку! Она сохранена в этом браузере.'}
+function searchProblems(){const q=$('searchInput').value.trim().toLowerCase();if(!q){$('searchInput').focus();return}const words=q.split(/\s+/).filter(w=>w.length>1);const found=problems.filter(p=>{const hay=(p.title+' '+p.desc+' '+p.keys+' '+p.steps.map(x=>x.join(' ')).join(' ')).toLowerCase();return hay.includes(q)||words.some(w=>hay.includes(w))});$('categoryContent').innerHTML=`<h1 class="page-title">Результаты поиска</h1><p class="sub">Запрос: «${escapeHtml(q)}»</p><p class="result-count">Найдено: ${found.length}</p><div class="list" style="margin-top:20px">${cards(found)}</div>`;showPage('categoryPage')}
+function escapeHtml(t){return t.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function gameSearch(g){const matches=problems.filter(p=>p.cat==='games');$('categoryContent').innerHTML=`<div class="eyebrow">🎮 Игры</div><h1 class="page-title">${g}: проблемы и решения</h1><p class="sub">Подборка игровых инструкций. Выберите подходящую проблему — список будет пополняться.</p><div class="list" style="margin-top:25px">${cards(matches)}</div>`;showPage('categoryPage')}
+function showFavorites(){const ids=getFavorites();const items=problems.filter(p=>ids.includes(p.id));$('favoritesContent').innerHTML=cards(items);showPage('favoritesPage')}
+document.querySelectorAll('.options[data-name]').forEach(group=>group.addEventListener('click',e=>{if(e.target.classList.contains('option')){group.querySelectorAll('.option').forEach(b=>b.classList.remove('selected'));e.target.classList.add('selected')}}));
+function readAnswers(){return readStore('ttf_survey',[])}
+const SUPABASE_URL='https://xpntcguscefgxfcidxly.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_PGZFLcH0-HXmqu_5hWYbuA_jbVu1zwi';
+$('surveyForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const form=e.currentTarget;
+ const submitButton=form.querySelector('button[type=submit]');
+ const originalText=submitButton.textContent;
+ const answers={};let valid=true;
+ document.querySelectorAll('.options[data-name]').forEach(g=>{const selected=g.querySelector('.selected');if(!selected)valid=false;else answers[g.dataset.name]=selected.textContent});
+ if(!valid){alert('Пожалуйста, ответьте на первые три вопроса.');return}
+ const fd=new FormData(form);
+ answers.missing=String(fd.get('missing')||'').trim();
+ answers.ideas=String(fd.get('ideas')||'').trim();
+ submitButton.disabled=true;submitButton.textContent='Отправляем...';
+ try{
+  const response=await fetch(`${SUPABASE_URL}/rest/v1/survey_responses`,{
+   method:'POST',
+   headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${SUPABASE_PUBLISHABLE_KEY}`,'Prefer':'return=minimal'},
+   body:JSON.stringify(answers)
+  });
+  if(!response.ok){const detail=await response.text();throw new Error(`HTTP ${response.status}: ${detail}`)}
+  answers.date=new Date().toISOString();const all=readAnswers();all.push(answers);writeStore('ttf_survey',all);
+  $('surveySuccess').textContent='✓ Спасибо! Ваши ответы отправлены и сохранены.';
+  $('surveySuccess').style.display='block';document.querySelector('.stats').style.display='block';renderStats();
+  form.reset();document.querySelectorAll('.option.selected').forEach(b=>b.classList.remove('selected'));
+ }catch(error){console.error('Survey submission failed:',error);alert('Не удалось отправить ответы в базу данных. Проверь подключение и настройки Supabase, затем попробуй ещё раз. Твои ответы пока не отправлены.');}
+ finally{submitButton.disabled=false;submitButton.textContent=originalText;}
+});
+function renderStats(){const data=readAnswers();const groups=[['use','Стали бы пользоваться?'],['interest','Интересующий раздел'],['frequency','Частота проблем']];$('statsContent').innerHTML=`<p>Ответов на этом устройстве: <b>${data.length}</b></p>`+groups.map(([key,title])=>{const counts={};data.forEach(a=>counts[a[key]]=(counts[a[key]]||0)+1);return `<h3>${title}</h3>`+Object.entries(counts).map(([label,n])=>`<div class="barrow"><span>${escapeHtml(label)}</span><div class="bar"><span style="width:${Math.round(n/data.length*100)}%"></span></div><b>${Math.round(n/data.length*100)}%</b></div>`).join('')}).join('')+`<h3>Предложения пользователей</h3>`+data.filter(a=>a.missing||a.ideas).map(a=>`<p class="notice">${escapeHtml([a.missing,a.ideas].filter(Boolean).join(' — '))}</p>`).join('')}
+
+// Reveal elements smoothly as they enter the screen.
+// MutationObserver also catches cards and steps rendered later by the site.
+(function initMotion(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('is-visible'));
+    return;
+  }
+  const revealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.10,rootMargin:'0px 0px -35px 0px'});
+
+  const selectors='.section,.ad,.category,.problem,.feature,.game,.step,.about p,.question,.mockshot';
+  function prepareReveal(root){
+    if(root.nodeType!==1)return;
+    if(root.matches && root.matches(selectors) && !root.classList.contains('reveal')){
+      root.classList.add('reveal');
+      revealObserver.observe(root);
+    }
+    if(root.querySelectorAll){
+      root.querySelectorAll(selectors+':not(.reveal)').forEach(el=>{
+        el.classList.add('reveal');
+        revealObserver.observe(el);
+      });
+    }
+  }
+  prepareReveal(document.body);
+  const mutationObserver=new MutationObserver(records=>{
+    records.forEach(record=>record.addedNodes.forEach(node=>prepareReveal(node)));
+  });
+  mutationObserver.observe(document.body,{childList:true,subtree:true});
+})();
+
+renderHome();
+</script>
+</body></html>
