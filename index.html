@@ -186,30 +186,66 @@ const searchSynonyms={
  'микрофон':['голос','голосовой чат','звук']
 };
 function searchProblems(){
- const q=normalizeSearchText($('searchInput').value);
+ const q=normalizeSearchText($('searchInput').value)
+  .replace(/wi[\s-]?fi/g,'wifi')
+  .replace(/вай[\s-]?фай/g,'вайфай')
+  .replace(/компьютера/g,'компьютер')
+  .replace(/компьютере/g,'компьютер');
  if(!q){$('searchInput').focus();return}
- const words=q.split(/\s+/).filter(w=>w.length>1);
- const expanded=[...new Set([...words,...words.flatMap(w=>searchSynonyms[w]||[])])];
- const ranked=problems.map(p=>{
-  const title=normalizeSearchText(p.title),desc=normalizeSearchText(p.desc),keys=normalizeSearchText(p.keys);
-  const steps=normalizeSearchText(p.steps.map(x=>x.join(' ')).join(' '));
-  const hay=title+' '+desc+' '+keys+' '+steps;
-  let score=0;
-  if(title.includes(q))score+=12;
-  if(keys.includes(q))score+=10;
-  if(desc.includes(q))score+=5;
-  expanded.forEach(w=>{
-   if(title.includes(w))score+=5;
-   if(keys.includes(w))score+=4;
-   if(desc.includes(w))score+=2;
-   if(steps.includes(w))score+=1;
-  });
-  if(words.length>1&&words.every(w=>hay.includes(w)))score+=4;
-  return {problem:p,score};
- }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
- const found=ranked.map(x=>x.problem);
- const empty=found.length?cards(found):`<div class="empty"><b>Пока не нашёл точное совпадение.</b><p>Попробуй описать проблему другими словами или выбери раздел:</p><div class="toolbar" style="justify-content:center"><button class="mini-btn" onclick="showCategory('pc')">💻 Компьютеры</button><button class="mini-btn" onclick="showCategory('games')">🎮 Игры</button></div><p class="notice">Например: «компьютер тормозит», «нет Wi-Fi», «игра вылетает».</p></div>`;
- $('categoryContent').innerHTML=`<h1 class="page-title">Результаты поиска</h1><p class="sub">Запрос: «${escapeHtml(q)}»</p><p class="result-count">Найдено инструкций: ${found.length}${found.length?' · Сначала показаны наиболее подходящие':''}</p><div class="list" style="margin-top:20px">${empty}</div>`;
+
+ // Сначала проверяем понятные фразы: это не даёт общим словам
+ // вроде «компьютер», «игра» и «тормозит» приводить к случайным карточкам.
+ const phraseRules=[
+  {phrases:['компьютер тормозит','тормозит компьютер','медленно работает компьютер','компьютер медленно работает','пк тормозит','ноутбук тормозит','компьютер зависает','пк лагает'],ids:['slow']},
+  {phrases:['не работает wifi','не работает wi fi','не работает вайфай','не работает вай фай','вайфай не работает','вай фай не работает','нет wifi','нет вайфая','не подключается wifi','не подключается вайфай','пропал интернет','нет интернета'],ids:['wifi']},
+  {phrases:['вирус на компьютере','вирусы на компьютере','проверить компьютер на вирусы','проверить пк на вирусы','удалить вирус','защитник windows'],ids:['virus']},
+  {phrases:['низкий fps','низкий фпс','мало fps','мало фпс','падает fps','падает фпс','фпс в игре','лагает игра','игра тормозит'],ids:['fps']},
+  {phrases:['не открываются сайты','сайты не открываются','не открывается сайт','сайт не открывается'],ids:['sites']},
+  {phrases:['ошибка загрузки steam','стим не скачивает','steam не скачивает','не обновляется steam','стим не обновляется'],ids:['steam']},
+  {phrases:['пропал звук','нет звука','не работает звук','нет звука на компьютере'],ids:['sound']},
+  {phrases:['мало места на диске','заканчивается место','диск заполнен','очистить диск'],ids:['disk']},
+  {phrases:['не подключаются bluetooth наушники','не работает bluetooth','блютуз не подключается'],ids:['bluetooth']},
+  {phrases:['не устанавливается обновление windows','ошибка обновления windows','windows не обновляется'],ids:['update']},
+  {phrases:['игра не запускается','не запускается игра','игра не открывается'],ids:['cs2','roblox','valorant']},
+  {phrases:['не запускается cs2','не запускается counter strike','ошибка cs2','не запускается кс'],ids:['cs2']},
+  {phrases:['не запускается roblox','роблокс не запускается'],ids:['roblox']},
+  {phrases:['не запускается valorant','ошибка запуска valorant'],ids:['valorant']},
+  {phrases:['вылетает minecraft','майнкрафт вылетает','minecraft вылетает'],ids:['minecraft']},
+  {phrases:['вылетает fortnite','фортнайт вылетает','fortnite зависает'],ids:['fortnite']},
+  {phrases:['не подключается матч dota','не работает dota 2','дота не подключается'],ids:['dota']},
+  {phrases:['gta долго загружается','долго загружается gta','гта долго загружается'],ids:['gta']},
+  {phrases:['игра постоянно вылетает','все игры вылетают','игры вылетают','игра закрывается сама'],ids:['crash','minecraft','fortnite']},
+  {phrases:['не работает микрофон','не слышно микрофон','микрофон не работает'],ids:['mic']}
+ ];
+ const matchedRule=phraseRules.find(rule=>rule.phrases.some(phrase=>{
+  const p=normalizeSearchText(phrase).replace(/wi[\s-]?fi/g,'wifi').replace(/вай[\s-]?фай/g,'вайфай');
+  return q===p || (q.length>=p.length+3 && q.includes(p));
+ }));
+ let found=[];
+ if(matchedRule){
+  found=matchedRule.ids.map(id=>problems.find(p=>p.id===id)).filter(Boolean);
+ }else{
+  const stop=new Set(['не','на','как','что','это','для','в','во','и','а','по','с','у','к','из','мой','моя']);
+  const words=q.split(/\s+/).filter(w=>w.length>1&&!stop.has(w));
+  const ranked=problems.map(p=>{
+   const title=normalizeSearchText(p.title),keys=normalizeSearchText(p.keys);
+   let score=0,matched=0;
+   words.forEach(word=>{
+    const inTitle=title.includes(word),inKeys=keys.includes(word);
+    if(inTitle||inKeys)matched++;
+    if(inTitle)score+=5;
+    if(inKeys)score+=3;
+   });
+   if(title.includes(q))score+=12;
+   if(keys.includes(q))score+=8;
+   const required=words.length<=1?1:Math.max(2,Math.ceil(words.length*0.6));
+   return {problem:p,score,matched,required};
+  }).filter(x=>x.score>0&&x.matched>=x.required)
+    .sort((a,b)=>b.score-a.score);
+  found=ranked.slice(0,6).map(x=>x.problem);
+ }
+ const empty=found.length?cards(found):`<div class="empty"><b>Пока не нашёл подходящую инструкцию.</b><p>Попробуй сформулировать проблему иначе или выбери раздел:</p><div class="toolbar" style="justify-content:center"><button class="mini-btn" onclick="showCategory('pc')">💻 Компьютеры</button><button class="mini-btn" onclick="showCategory('games')">🎮 Игры</button></div><p class="notice">Например: «компьютер тормозит», «нет Wi-Fi», «низкий FPS», «игра вылетает».</p></div>`;
+ $('categoryContent').innerHTML=`<h1 class="page-title">Результаты поиска</h1><p class="sub">Запрос: «${escapeHtml(q)}»</p><p class="result-count">Найдено инструкций: ${found.length}</p><div class="list" style="margin-top:20px">${empty}</div>`;
  showPage('categoryPage');
 }
 function escapeHtml(t){return t.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
