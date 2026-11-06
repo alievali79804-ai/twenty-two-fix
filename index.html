@@ -89,6 +89,30 @@
 .ttf-ai-note{padding:0 12px 9px;background:#fff;color:#8994a7;font-size:10px;text-align:center}
 @media(max-width:520px){#ttfAiLauncher{right:13px;bottom:13px;padding:11px 15px}#ttfAiPanel{right:8px;bottom:70px;width:calc(100vw - 16px);height:min(640px,calc(100dvh - 82px))}}
 
+
+/* Обновлённая кнопка и форма предложений */
+#ttfAiLauncher{animation:ttfLogo 4.8s ease-in-out infinite;transition:transform .22s ease,box-shadow .22s ease}
+#ttfAiLauncher:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 34px #274b9a50}
+#ttfAiLauncher:active{transform:scale(.97)}
+#ttfSuggestionOpen{display:block;width:100%;border:1px solid #dce5f5;background:#f5f7ff;color:#3159b7;border-radius:12px;padding:10px 12px;font-weight:750;font-size:12px;cursor:pointer;transition:background .2s,transform .2s}
+#ttfSuggestionOpen:hover{background:#eaf0ff;transform:translateY(-1px)}
+#ttfSuggestionModal{position:fixed;inset:0;z-index:1100;background:#101a2c88;display:none;align-items:center;justify-content:center;padding:16px}
+#ttfSuggestionModal.open{display:flex;animation:ttfPageIn .2s ease both}
+.ttf-suggest-card{width:min(440px,100%);max-height:90dvh;overflow:auto;background:#fff;border-radius:22px;padding:22px;box-shadow:0 22px 70px #101a2c44;animation:ttfPageIn .24s ease both}
+.ttf-suggest-card h2{margin:0 0 8px;color:#1e2b45;font-size:22px}
+.ttf-suggest-card p{margin:0 0 17px;color:#71809a;font-size:13px;line-height:1.5}
+.ttf-suggest-card label{display:block;margin:12px 0 6px;color:#33415c;font-size:12px;font-weight:750}
+.ttf-suggest-card input,.ttf-suggest-card select,.ttf-suggest-card textarea{width:100%;box-sizing:border-box;border:1px solid #dce4f2;border-radius:11px;padding:11px 12px;font:inherit;font-size:14px;background:#fbfcff;color:#25334d;outline:none}
+.ttf-suggest-card textarea{min-height:105px;resize:vertical}
+.ttf-suggest-card input:focus,.ttf-suggest-card select:focus,.ttf-suggest-card textarea:focus{border-color:#7898ef;box-shadow:0 0 0 3px #356df315}
+.ttf-suggest-actions{display:flex;gap:9px;margin-top:16px}
+.ttf-suggest-actions button{flex:1;border:0;border-radius:11px;padding:12px;font-weight:800;cursor:pointer}
+#ttfSuggestionSubmit{background:#356df3;color:#fff}
+#ttfSuggestionCancel{background:#eef2f9;color:#52617a}
+#ttfSuggestionStatus{display:none;margin-top:12px;padding:10px;border-radius:10px;background:#eff8f2;color:#237344;font-size:12px;line-height:1.5}
+#ttfSuggestionStatus.error{background:#fff1f0;color:#a3312b}
+@media(max-width:520px){.ttf-suggest-card{padding:18px;border-radius:18px}}
+
 </style>
 </head>
 <body>
@@ -157,8 +181,8 @@
 <footer class="footer"><div class="wrap footer-inner"><span>© 2026 Twenty Two Fix</span><span>Бесплатная помощь с компьютерами и играми</span><span>Покажем не только что делать, но и куда нажимать!</span></div></footer>
 
 <!-- Twenty Two AI assistant widget -->
-<button id="ttfAiLauncher" type="button" aria-label="Открыть Twenty Two AI">
-  <span class="ai-spark">✦</span><span>Twenty Two AI</span>
+<button id="ttfAiLauncher" type="button" aria-label="Не нашли решение? Открыть помощника">
+  <span class="ai-spark">✦</span><span>Не нашли решение?</span>
 </button>
 <section id="ttfAiPanel" aria-label="Чат Twenty Two AI">
   <header class="ttf-ai-head">
@@ -178,8 +202,23 @@
     <textarea id="ttfAiInput" rows="1" maxlength="1200" placeholder="Опиши свою проблему..." aria-label="Сообщение помощнику"></textarea>
     <button id="ttfAiSend" type="submit">➤</button>
   </form>
+  <div style="padding:0 12px 9px;background:#fff"><button id="ttfSuggestionOpen" type="button">Не нашли решение? Оставить заявку ↗</button></div>
   <div class="ttf-ai-note">Не отправляй пароли, коды и личные данные.</div>
 </section>
+<div id="ttfSuggestionModal" role="dialog" aria-modal="true" aria-labelledby="ttfSuggestionTitle">
+  <form class="ttf-suggest-card" id="ttfSuggestionForm">
+    <h2 id="ttfSuggestionTitle">Предложить новую инструкцию</h2>
+    <p>Опиши проблему. Мы рассмотрим предложение и сможем добавить решение в каталог Twenty Two Fix.</p>
+    <label for="ttfSuggestionCategory">Категория</label>
+    <select id="ttfSuggestionCategory" required><option value="pc">Компьютер или Windows</option><option value="internet">Интернет или Wi-Fi</option><option value="games">Компьютерная игра</option><option value="other">Другое</option></select>
+    <label for="ttfSuggestionTitleInput">Кратко опиши проблему</label>
+    <input id="ttfSuggestionTitleInput" maxlength="120" required placeholder="Например: игра закрывается при запуске">
+    <label for="ttfSuggestionDetails">Что именно происходит?</label>
+    <textarea id="ttfSuggestionDetails" maxlength="1500" required placeholder="Напиши, когда появляется проблема и что уже пробовал(а)..."></textarea>
+    <div class="ttf-suggest-actions"><button id="ttfSuggestionCancel" type="button">Отмена</button><button id="ttfSuggestionSubmit" type="submit">Отправить</button></div>
+    <div id="ttfSuggestionStatus" role="status"></div>
+  </form>
+</div>
 
 <script>
 const problems=[
@@ -447,6 +486,36 @@ function renderStats(){const data=readAnswers();const groups=[['use','Стали
   form.addEventListener('submit',e=>{e.preventDefault();sendMessage(input.value)});
   input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage(input.value)}});
   document.querySelectorAll('[data-ai-prompt]').forEach(b=>b.addEventListener('click',()=>sendMessage(b.dataset.aiPrompt)));
+})();
+
+
+// Форма предложений пользователей. Для сохранения нужна таблица Supabase из README.
+(function initSuggestionForm(){
+ const modal=document.getElementById('ttfSuggestionModal');
+ const open=document.getElementById('ttfSuggestionOpen');
+ const form=document.getElementById('ttfSuggestionForm');
+ const cancel=document.getElementById('ttfSuggestionCancel');
+ const status=document.getElementById('ttfSuggestionStatus');
+ if(!modal||!open||!form)return;
+ function close(){modal.classList.remove('open')}
+ open.addEventListener('click',()=>{modal.classList.add('open');status.style.display='none';document.getElementById('ttfSuggestionTitleInput').focus()});
+ cancel.addEventListener('click',close);
+ modal.addEventListener('click',e=>{if(e.target===modal)close()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+ form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const submit=form.querySelector('#ttfSuggestionSubmit');
+  const original=submit.textContent;
+  const payload={category:document.getElementById('ttfSuggestionCategory').value,title:document.getElementById('ttfSuggestionTitleInput').value.trim(),details:document.getElementById('ttfSuggestionDetails').value.trim()};
+  if(!payload.title||!payload.details)return;
+  submit.disabled=true;submit.textContent='Отправляем…';status.className='';status.style.display='none';
+  try{
+   const response=await fetch(`${SUPABASE_URL}/rest/v1/problem_suggestions`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${SUPABASE_PUBLISHABLE_KEY}`,'Prefer':'return=minimal'},body:JSON.stringify(payload)});
+   if(!response.ok){const detail=await response.text();throw new Error(`HTTP ${response.status}: ${detail}`)}
+   status.textContent='Спасибо! Предложение отправлено. Мы рассмотрим его для будущих инструкций.';status.style.display='block';form.reset();
+  }catch(err){console.error('Suggestion submit failed:',err);status.textContent='Пока не удалось отправить заявку. Возможно, таблица для предложений ещё не создана в Supabase. Открой инструкцию README_RU.txt.';status.className='error';status.style.display='block'}
+  finally{submit.disabled=false;submit.textContent=original}
+ });
 })();
 
 renderHome();
