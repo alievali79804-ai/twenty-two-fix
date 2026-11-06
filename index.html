@@ -336,8 +336,11 @@ function searchProblems(){
     .sort((a,b)=>b.score-a.score);
   found=ranked.slice(0,6).map(x=>x.problem);
  }
- const empty=found.length?cards(found):`<div class="empty"><b>Пока не нашёл подходящую инструкцию.</b><p>Попробуй сформулировать проблему иначе. Если решения всё равно нет, Twenty Two AI поможет разобраться:</p><div class="toolbar" style="justify-content:center;margin:16px 0"><button class="btn" type="button" onclick="openTwentyTwoAIFromSearch()">✦ Спросить Twenty Two AI</button></div><div class="toolbar" style="justify-content:center"><button class="mini-btn" onclick="showCategory('pc')">💻 Компьютеры</button><button class="mini-btn" onclick="showCategory('games')">🎮 Игры</button></div><p class="notice">Например: «компьютер тормозит», «нет Wi-Fi», «низкий FPS», «игра вылетает».</p></div>`;
- $('categoryContent').innerHTML=`<h1 class="page-title">Результаты поиска</h1><p class="sub">Запрос: «${escapeHtml(q)}»</p><p class="result-count">Найдено инструкций: ${found.length}</p><div class="list" style="margin-top:20px">${empty}</div>`;
+ const resultsHtml=found.length
+  ? cards(found)
+  : `<div class="empty"><b>Пока не нашёл подходящую инструкцию.</b><p>Попробуй сформулировать проблему иначе или спроси Twenty Two AI.</p><div class="toolbar" style="justify-content:center"><button class="mini-btn" onclick="showCategory('pc')">💻 Компьютеры</button><button class="mini-btn" onclick="showCategory('games')">🎮 Игры</button></div><p class="notice">Например: «компьютер тормозит», «нет Wi-Fi», «низкий FPS», «игра вылетает».</p></div>`;
+ const aiHelp=`<div class="empty" style="margin-top:22px;text-align:center"><b>Не нашли решение?</b><p>Опишите проблему Twenty Two AI — он поможет разобраться.</p><div class="toolbar" style="justify-content:center;margin:12px 0"><button class="btn" type="button" onclick="openTwentyTwoAIFromSearch()">✦ Не нашли решение?</button></div></div>`;
+ $('categoryContent').innerHTML=`<h1 class="page-title">Результаты поиска</h1><p class="sub">Запрос: «${escapeHtml(q)}»</p><p class="result-count">Найдено инструкций: ${found.length}</p><div class="list" style="margin-top:20px">${resultsHtml}${aiHelp}</div>`;
  showPage('categoryPage');
 }
 function escapeHtml(t){return t.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
