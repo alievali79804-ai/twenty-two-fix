@@ -62,6 +62,33 @@
  .reveal{opacity:1!important;transform:none!important}
 }
 
+
+/* Twenty Two AI assistant */
+#ttfAiLauncher{position:fixed;right:20px;bottom:20px;z-index:1000;border:0;border-radius:999px;padding:13px 18px;background:linear-gradient(110deg,#356df3,#8061e8);color:#fff;font-weight:800;box-shadow:0 10px 28px #274b9a38;display:flex;align-items:center;gap:9px}
+#ttfAiLauncher .ai-spark{font-size:20px}
+#ttfAiPanel{position:fixed;right:20px;bottom:82px;z-index:1001;width:min(390px,calc(100vw - 24px));height:min(620px,calc(100dvh - 112px));background:#fff;border:1px solid #dfe6f3;border-radius:22px;box-shadow:0 20px 70px #18294a30;display:none;flex-direction:column;overflow:hidden}
+#ttfAiPanel.open{display:flex;animation:ttfPageIn .22s ease both}
+.ttf-ai-head{padding:15px 16px;background:linear-gradient(110deg,#356df3,#8061e8);color:#fff;display:flex;align-items:center;gap:10px}
+.ttf-ai-avatar{width:38px;height:38px;border-radius:13px;background:#ffffff25;display:grid;place-items:center;font-size:21px}
+.ttf-ai-head-copy{flex:1;min-width:0}.ttf-ai-head-copy b{display:block;font-size:15px}.ttf-ai-head-copy small{opacity:.85;font-size:11px}
+.ttf-ai-close{border:0;background:#ffffff22;color:#fff;border-radius:10px;width:34px;height:34px;font-size:20px}
+#ttfAiMessages{padding:14px;overflow:auto;flex:1;background:#f7f9fe;display:flex;flex-direction:column;gap:10px}
+.ttf-ai-msg{max-width:90%;padding:11px 13px;border-radius:15px;font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.ttf-ai-msg.bot{align-self:flex-start;background:#fff;border:1px solid #e4eaf5;color:#25334d;border-bottom-left-radius:5px}
+.ttf-ai-msg.user{align-self:flex-end;background:#356df3;color:#fff;border-bottom-right-radius:5px}
+.ttf-ai-msg small{display:block;margin-top:7px;color:#7b879b;font-size:10px}
+.ttf-ai-related{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ttf-ai-related button{border:1px solid #cbd8f1;background:#f1f5ff;color:#2857b9;border-radius:10px;padding:7px 9px;font-size:11px;font-weight:700}
+.ttf-ai-quick{padding:9px 12px 0;display:flex;gap:6px;overflow:auto;background:#fff}
+.ttf-ai-quick button{white-space:nowrap;border:1px solid #dce5f5;background:#f7f9ff;border-radius:999px;padding:7px 10px;color:#435574;font-size:11px}
+.ttf-ai-form{display:flex;gap:8px;padding:11px;border-top:1px solid #e8edf6;background:#fff}
+#ttfAiInput{flex:1;min-width:0;resize:none;border:1px solid #dce4f2;border-radius:12px;padding:10px 11px;font-size:13px;max-height:90px;outline:none}
+#ttfAiInput:focus{border-color:#7b9bf2}
+#ttfAiSend{border:0;border-radius:12px;padding:0 14px;background:#356df3;color:#fff;font-weight:800}
+#ttfAiSend:disabled{opacity:.5;cursor:wait}
+.ttf-ai-note{padding:0 12px 9px;background:#fff;color:#8994a7;font-size:10px;text-align:center}
+@media(max-width:520px){#ttfAiLauncher{right:13px;bottom:13px;padding:11px 15px}#ttfAiPanel{right:8px;bottom:70px;width:calc(100vw - 16px);height:min(640px,calc(100dvh - 82px))}}
+
 </style>
 </head>
 <body>
@@ -128,6 +155,32 @@
 <p>Моя цель — сделать решение технических проблем доступным, понятным и бесплатным для каждого.</p>
 <div class="ad">Здесь могла быть ваша реклама</div></div></section>
 <footer class="footer"><div class="wrap footer-inner"><span>© 2026 Twenty Two Fix</span><span>Бесплатная помощь с компьютерами и играми</span><span>Покажем не только что делать, но и куда нажимать!</span></div></footer>
+
+<!-- Twenty Two AI assistant widget -->
+<button id="ttfAiLauncher" type="button" aria-label="Открыть Twenty Two AI">
+  <span class="ai-spark">✦</span><span>Twenty Two AI</span>
+</button>
+<section id="ttfAiPanel" aria-label="Чат Twenty Two AI">
+  <header class="ttf-ai-head">
+    <div class="ttf-ai-avatar">✦</div>
+    <div class="ttf-ai-head-copy"><b>Twenty Two AI</b><small>Помощник по компьютерам и играм</small></div>
+    <button class="ttf-ai-close" id="ttfAiClose" type="button" aria-label="Закрыть чат">×</button>
+  </header>
+  <div id="ttfAiMessages" aria-live="polite">
+    <div class="ttf-ai-msg bot">Привет! Я Twenty Two AI. Опиши, что случилось с компьютером или игрой. Я постараюсь разобраться и подобрать понятную инструкцию — не только что делать, но и куда нажимать.</div>
+  </div>
+  <div class="ttf-ai-quick">
+    <button type="button" data-ai-prompt="Компьютер тормозит">Компьютер тормозит</button>
+    <button type="button" data-ai-prompt="Не работает Wi-Fi">Не работает Wi-Fi</button>
+    <button type="button" data-ai-prompt="Игра не запускается">Игра не запускается</button>
+  </div>
+  <form class="ttf-ai-form" id="ttfAiForm">
+    <textarea id="ttfAiInput" rows="1" maxlength="1200" placeholder="Опиши свою проблему..." aria-label="Сообщение помощнику"></textarea>
+    <button id="ttfAiSend" type="submit">➤</button>
+  </form>
+  <div class="ttf-ai-note">Не отправляй пароли, коды и личные данные.</div>
+</section>
+
 <script>
 const problems=[
 {id:'slow',title:'Компьютер тормозит',cat:'pc',desc:'Проверяем автозагрузку, свободное место и нагрузку на систему.',keys:'тормозит медленный компьютер зависает',steps:[['Откройте Диспетчер задач','Нажмите Ctrl + Shift + Esc.','Клавиши: <span class="highlight">Ctrl</span> + <span class="highlight">Shift</span> + <span class="highlight">Esc</span>'],['Проверьте нагрузку','Откройте вкладку «Процессы» и посмотрите, какие приложения сильнее всего нагружают процессор и память.','<span class="highlight">Процессы</span> → проверьте столбцы «ЦП» и «Память»'],['Проверьте автозагрузку','Перейдите в раздел «Автозагрузка приложений». Отключайте только те программы, назначение которых вам известно.','<span class="highlight">Автозагрузка приложений</span>'],['Перезагрузите компьютер','Сохраните открытые документы и перезагрузите устройство.','Пуск → Питание → Перезагрузка']],warning:'Не завершайте неизвестные системные процессы и не удаляйте файлы Windows.'},
@@ -318,6 +371,82 @@ function renderStats(){const data=readAnswers();const groups=[['use','Стали
     records.forEach(record=>record.addedNodes.forEach(node=>prepareReveal(node)));
   });
   mutationObserver.observe(document.body,{childList:true,subtree:true});
+})();
+
+
+// Twenty Two AI — browser interface. The API key stays on the Supabase server.
+(function initTwentyTwoAI(){
+  const launcher=document.getElementById('ttfAiLauncher');
+  const panel=document.getElementById('ttfAiPanel');
+  const close=document.getElementById('ttfAiClose');
+  const form=document.getElementById('ttfAiForm');
+  const input=document.getElementById('ttfAiInput');
+  const send=document.getElementById('ttfAiSend');
+  const messagesBox=document.getElementById('ttfAiMessages');
+  if(!launcher||!panel||!form)return;
+  let history=[];
+  function openChat(){panel.classList.add('open');input.focus()}
+  function closeChat(){panel.classList.remove('open')}
+  launcher.addEventListener('click',()=>panel.classList.contains('open')?closeChat():openChat());
+  close.addEventListener('click',closeChat);
+  function addMessage(text,who,related=[]){
+    const item=document.createElement('div');
+    item.className='ttf-ai-msg '+who;
+    item.textContent=text;
+    if(related.length){
+      const row=document.createElement('div');row.className='ttf-ai-related';
+      related.forEach(id=>{
+        const p=problems.find(x=>x.id===id);if(!p)return;
+        const b=document.createElement('button');b.type='button';b.textContent='Открыть: '+p.title;
+        b.addEventListener('click',()=>{closeChat();openArticle(id)});
+        row.appendChild(b);
+      });
+      item.appendChild(row);
+    }
+    messagesBox.appendChild(item);messagesBox.scrollTop=messagesBox.scrollHeight;
+  }
+  function makeContext(query){
+    const q=normalizeSearchText(query);
+    const words=q.split(/\s+/).filter(w=>w.length>2);
+    const ranked=problems.map(p=>{
+      const text=normalizeSearchText([p.title,p.desc,p.keys].join(' '));
+      let score=0;words.forEach(w=>{if(text.includes(w))score++});
+      if(text.includes(q))score+=5;
+      return {p,score};
+    }).sort((a,b)=>b.score-a.score).filter(x=>x.score>0).slice(0,5);
+    return ranked.map(({p})=>({
+      id:p.id,title:p.title,description:p.desc,
+      steps:p.steps.map((step,i)=>({number:i+1,title:step[0],whatToDo:step[1],whereToClick:step[2]})),
+      warning:p.warning
+    }));
+  }
+  async function sendMessage(raw){
+    const text=String(raw||'').trim();if(!text||send.disabled)return;
+    addMessage(text,'user');history.push({role:'user',content:text});input.value='';
+    send.disabled=true;send.textContent='…';
+    const pending=document.createElement('div');pending.className='ttf-ai-msg bot';pending.textContent='Разбираюсь в проблеме…';messagesBox.appendChild(pending);messagesBox.scrollTop=messagesBox.scrollHeight;
+    try{
+      const response=await fetch(`${SUPABASE_URL}/functions/v1/twenty-two-ai`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${SUPABASE_PUBLISHABLE_KEY}`},
+        body:JSON.stringify({messages:history.slice(-8),catalogue:makeContext(text)})
+      });
+      const data=await response.json().catch(()=>({}));
+      if(!response.ok)throw new Error(data.error||`Ошибка подключения (${response.status})`);
+      pending.remove();
+      let reply=data.reply||'Не получилось подготовить ответ. Попробуй ещё раз.';
+      const related=Array.isArray(data.instructionIds)?data.instructionIds.filter(id=>problems.some(p=>p.id===id)).slice(0,3):[];
+      addMessage(reply,'bot',related);
+      history.push({role:'assistant',content:reply});
+      if(history.length>10)history=history.slice(-10);
+    }catch(err){
+      pending.remove();
+      addMessage(err.message.includes('Failed to fetch')?'Пока не удалось подключиться к ИИ. Возможно, серверная функция ещё не опубликована.':'Не получилось получить ответ: '+err.message,'bot');
+    }finally{send.disabled=false;send.textContent='➤';input.focus()}
+  }
+  form.addEventListener('submit',e=>{e.preventDefault();sendMessage(input.value)});
+  input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage(input.value)}});
+  document.querySelectorAll('[data-ai-prompt]').forEach(b=>b.addEventListener('click',()=>sendMessage(b.dataset.aiPrompt)));
 })();
 
 renderHome();
